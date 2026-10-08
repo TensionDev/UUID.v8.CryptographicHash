@@ -1,7 +1,37 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;netcoreapp3.1;net6.0;net8.0;net10.0</TargetFrameworks>
+    <NuGetAuditMode>all</NuGetAuditMode>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Version>0.1.0-alpha.1</Version>
+    <Authors>TensionDev amsga</Authors>
+    <Company>TensionDev</Company>
+    <Description>TensionDev.UUID.v8.CryptographicHash is a .NET library that supports UUID version v8 with strict RFC compliance.</Description>
+    <Copyright>Copyright (c) TensionDev 2021 - 2026</Copyright>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/TensionDev/UUID.v8.CryptographicHash</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/TensionDev/UUID.v8.CryptographicHash</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>UUID GUID</PackageTags>
+    <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+    <NeutralLanguage>en-SG</NeutralLanguage>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="TensionDev.UUID" Version="2.5.0" />
+  </ItemGroup>
 
 </Project>
