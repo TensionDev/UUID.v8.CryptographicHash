@@ -8,8 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+
+## [v0.1.0] - 2026-10-09
+[v0.1.0](https://github.com/TensionDev/UUID/releases/tag/v0.1.0)
+
 ### Added
 - Added SHA-256 implementation for UUIDv8.
 - Added SHA-384 implementation for UUIDv8.
 - Added SHA-512 implementation for UUIDv8.
-
