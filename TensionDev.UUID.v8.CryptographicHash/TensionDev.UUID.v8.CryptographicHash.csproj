@@ -6,7 +6,7 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <Authors>TensionDev amsga</Authors>
     <Company>TensionDev</Company>
     <Description>TensionDev.UUID.v8.CryptographicHash is a .NET library that supports UUID version v8 with strict RFC compliance.</Description>
@@ -31,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="TensionDev.UUID" Version="2.5.0" />
+    <PackageReference Include="TensionDev.UUID" Version="2.5.1" />
   </ItemGroup>
 
 </Project>

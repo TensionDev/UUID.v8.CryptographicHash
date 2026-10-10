@@ -27,6 +27,8 @@ namespace TensionDev.UUID.v8.CryptographicHash
         /// <summary>
         /// Initialises a new GUID/UUID based on Version 8 using SHA-256 namespace name-based
         /// </summary>
+        /// <param name="nameSpace">The namespace UUID to use for hashing.</param>
+        /// <param name="name">The name string to hash with the namespace.</param>
         /// <returns>A new Uuid object</returns>
         public static Uuid NewUUIDv8(Uuid nameSpace, String name)
         {
