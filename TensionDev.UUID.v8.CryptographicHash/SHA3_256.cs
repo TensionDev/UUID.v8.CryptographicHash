@@ -15,64 +15,28 @@
 //   limitations under the License.
 
 using System;
-using System.Text;
 
 namespace TensionDev.UUID.v8.CryptographicHash
 {
     /// <summary>
     /// Class Library to generate Universally Unique Identifier (UUID) / Globally Unique Identifier (GUID) based on Version 8 using SHA3-256 namespace name-based.
     /// </summary>
+    /// <remarks>
+    /// SHA3-256 is only available from .NET 8.0 or greater. On older runtimes the facade still compiles and forwards to the
+    /// shared builder, which throws <see cref="PlatformNotSupportedException"/> when SHA3-256 is requested.
+    /// </remarks>
     public static class SHA3_256
     {
+        private static readonly Type HashType = typeof(System.Security.Cryptography.SHA3_256);
+
         /// <summary>
         /// Initialises a new GUID/UUID based on Version 8 using SHA3-256 namespace name-based.
         /// </summary>
         /// <param name="nameSpace">The namespace UUID to use for hashing.</param>
         /// <param name="name">The name string to hash with the namespace.</param>
         /// <returns>A new Uuid object</returns>
-        public static Uuid NewUUIDv8(Uuid nameSpace, String name)
-        {
-            Byte[] nsArray = nameSpace.ToByteArray();
-            Byte[] nArray = Encoding.UTF8.GetBytes(name);
-
-            Byte[] buffer = new Byte[nsArray.Length + nArray.Length];
-            Buffer.BlockCopy(nsArray, 0, buffer, 0, nsArray.Length);
-            Buffer.BlockCopy(nArray, 0, buffer, nsArray.Length, nArray.Length);
-
-            Byte[] hash;
-#if NET8_0_OR_GREATER
-            hash = System.Security.Cryptography.SHA3_256.HashData(buffer);
-#else
-            throw new PlatformNotSupportedException("SHA3-256 is not supported on this platform. Please use .NET 8.0 or greater.");
-#endif
-
-            Byte[] hex = new Byte[16];
-
-            hex[0] = hash[0];
-            hex[1] = hash[1];
-            hex[2] = hash[2];
-            hex[3] = hash[3];
-
-            hex[4] = hash[4];
-            hex[5] = hash[5];
-
-            hex[6] = (Byte)((hash[6] & 0x0F) + 0x80);
-            hex[7] = hash[7];
-
-            hex[8] = (Byte)((hash[8] & 0x3F) + 0x80);
-            hex[9] = hash[9];
-
-            hex[10] = hash[10];
-            hex[11] = hash[11];
-            hex[12] = hash[12];
-            hex[13] = hash[13];
-            hex[14] = hash[14];
-            hex[15] = hash[15];
-
-            Uuid Id = new Uuid(hex);
-
-            return Id;
-        }
+        /// <exception cref="PlatformNotSupportedException">Thrown on runtimes below .NET 8.0 where SHA3-256 is unavailable.</exception>
+        public static Uuid NewUUIDv8(Uuid nameSpace, String name) => Uuidv8Builder.Build(nameSpace, name, HashType);
 
         /// <summary>
         /// Returns true if the Uuid specified is Version 8.
